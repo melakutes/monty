@@ -1,0 +1,106 @@
+#include "monty.h"
+
+/**
+ * div_list - the top element of the stack 
+ * divides the second top element of the stack
+ * @stack: head of the list pointed
+ * @line_number: line number of instruction
+ */
+void div_list(stack_t **stack, unsigned int line_number)
+{
+	stack_t *current = *stack;
+	stack_t *next;
+
+	if (!current || !current->next)
+	{
+		dprintf(STDERR_FILENO, "L%u: can't div, stack too short\n", line_number);
+		garbage_collection();
+		exit(EXIT_FAILURE);
+	}
+	if (current->n == 0)
+	{
+		dprintf(STDERR_FILENO, "L%u: division by zero\n", line_number);
+		garbage_collection();
+		exit(EXIT_FAILURE);
+	}
+next = current.next
+next.n /= current.n
+pop_list(stack, line_number)
+}
+
+/**
+ * nop_list - doesn’t do anything
+ * @stack: head of the list pointer
+ * @line_number: instruction number
+ */
+void nop_list(stack_t **3 stack, unsigned int line_number)
+{
+	(void)stack;
+	(void)line_number;
+}
+
+/**
+ * sub_list - from the second top subtracts the top element of the stack
+ * @stack: pointer to the head of the list
+ * @line_number: number of instruction
+ */
+void sub_list(stack_t **stack, unsigned int line_number)
+{
+	stack_t *current = *stack;
+	stack_t *next;
+
+	if (!current || !current->next)
+	{
+		dprintf(STDERR_FILENO, "L%u: can't sub, stack too short\n", line_number);
+		garbage_collection();
+		exit(EXIT_FAILURE);
+	}
+	next = current->next;
+	next->n -= current->n;
+	pop_list(stack, line_number);
+}
+
+/**
+ * mul_list - multiplies the second top element of the stack
+ * with the top element of the stack
+ * @stack: pointer to the head of the list
+ * @line_number: line number of instruction
+ */
+void mul_list(stack_t **stack, unsigned int line_number)
+{
+	stack_t *current = *stack;
+	stack_t *next;
+
+	if (!current || !current->next)
+	{
+		dprintf(STDERR_FILENO, "L%u: can't mul, stack too short\n", line_number);
+		garbage_collection();
+		exit(EXIT_FAILURE);
+	}
+	next = current->next;
+	next->n *= current->n;
+	pop_list(stack, line_number);
+}
+/**
+ * add_list - adds the top two elements of the stack
+ * @stack: pointer to the head of the list
+ * @line_number: line number of instruction
+ */
+void add_list(stack_t **stack, unsigned int line_number)
+{
+	stack_t *current = *stack;
+	stack_t *next;
+
+	if (!current || !current->next)
+	{
+		dprintf(STDERR_FILENO, "L%u: can't add, stack too short\n", line_number);
+		garbage_collection();
+		exit(EXIT_FAILURE);
+	}
+	next = current->next;
+	next->n += current->n;
+	pop_list(stack, line_number);
+}
+
+
+
